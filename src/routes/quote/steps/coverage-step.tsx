@@ -1,5 +1,7 @@
+import { CoverageForm } from "../../../components/forms/coverage-form";
+
 const CoverageStep = () => {
-  return <div>Coverage Step</div>;
-}
+  return <CoverageForm />;
+};
 
 export default CoverageStep;

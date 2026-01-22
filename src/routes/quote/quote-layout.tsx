@@ -77,7 +77,7 @@ const QuoteLayout = () => {
           })}
         </nav>
       </aside>
-      <main className="flex-1">
+      <main className="flex-1 overflow-y-auto">
         <Outlet />
       </main>
     </div>

@@ -75,3 +75,11 @@ export async function submitQuote(quote: Quote): Promise<{
 
   throw new Error("Unexpected response");
 }
+
+export async function deleteQuote(): Promise<void> {
+  const res = await fetch(`${BASE_URL}/quote`, {
+    method: "DELETE",
+  });
+
+  if (!res.ok) throw new Error("Failed to delete quote");
+}
