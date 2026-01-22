@@ -1,0 +1,85 @@
+import { useEffect, useState } from "react";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { Check } from "lucide-react";
+
+import { getQuote } from "../../api/quote";
+import type { Quote } from "../../types/quote";
+import { cn } from "../../utils";
+import { steps, getCompletionByStep } from "../../utils/quote";
+
+const QuoteLayout = () => {
+  const location = useLocation();
+  const [quote, setQuote] = useState<Quote | null>(null);
+
+  useEffect(() => {
+    getQuote().then(setQuote);
+  }, []);
+
+  const completion = getCompletionByStep(quote);
+
+  const isStepAccessible = (index: number) => {
+    // First step is always accessible
+    if (index === 0) return true;
+
+    // Check if previous step is completed
+    const previousStep = steps[index - 1];
+    return completion[previousStep.id as keyof typeof completion];
+  };
+
+  return (
+    <div className="flex h-[100vh] p-6 gap-6">
+      <aside className="w-80 h-full bg-slate-200 rounded-lg flex flex-col">
+        <a href="/" className="block p-4 text-xl font-bold">
+          <img
+            src="https://www.socotra.com/wp-content/uploads/2024/10/Socotra-Logo-Black-2048x622.png"
+            alt=""
+            width="100"
+          />
+        </a>
+        <nav className="flex flex-col">
+          {steps.map((step, index) => {
+            const isActive = location.pathname === step.path;
+            const isAccessible = isStepAccessible(index);
+
+            return (
+              <NavLink
+                key={step.id}
+                to={step.path}
+                className={cn(
+                  "flex items-center gap-3 p-4",
+                  !isAccessible
+                    ? "pointer-events-none opacity-50"
+                    : "hover:opacity-80",
+                )}
+              >
+                <div
+                  className={cn(
+                    "flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold",
+                    isAccessible
+                      ? "bg-green-700 text-white"
+                      : "bg-slate-400 text-slate-200",
+                    isActive && "bg-[#52a8eccc] text-white",
+                  )}
+                >
+                  {isAccessible && !isActive ? <Check size={16} /> : index + 1}
+                </div>
+                <span
+                  className={
+                    location.pathname === step.path ? "font-semibold" : ""
+                  }
+                >
+                  {step.label}
+                </span>
+              </NavLink>
+            );
+          })}
+        </nav>
+      </aside>
+      <main className="flex-1">
+        <Outlet />
+      </main>
+    </div>
+  );
+};
+
+export default QuoteLayout;
