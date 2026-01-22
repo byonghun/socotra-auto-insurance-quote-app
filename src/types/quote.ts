@@ -21,3 +21,5 @@ export type Quote = {
 };
 
 export type StepId = "personal" | "address" | "vehicle" | "coverage" | "review";
+
+export type QuoteProp = Quote | null | undefined;

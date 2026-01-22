@@ -1,19 +1,13 @@
-import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { Check } from "lucide-react";
 
-import { getQuote } from "../../api/quote";
-import type { Quote } from "../../types/quote";
 import { cn } from "../../utils";
 import { steps, getCompletionByStep } from "../../utils/quote";
+import { useQuoteQuery } from "../../hooks";
 
 const QuoteLayout = () => {
   const location = useLocation();
-  const [quote, setQuote] = useState<Quote | null>(null);
-
-  useEffect(() => {
-    getQuote().then(setQuote);
-  }, []);
+  const { data: quote, isLoading } = useQuoteQuery();
 
   const completion = getCompletionByStep(quote);
 
@@ -25,6 +19,14 @@ const QuoteLayout = () => {
     const previousStep = steps[index - 1];
     return completion[previousStep.id as keyof typeof completion];
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-[100vh] p-6 gap-6">
