@@ -68,9 +68,7 @@ export function AddressForm() {
     }
   }
 
-  const { register, handleSubmit, formState
-    // , setValue
-  } = form;
+  const { register, handleSubmit, formState } = form;
 
   return (
     <div className="mx-auto max-w-2xl p-6">

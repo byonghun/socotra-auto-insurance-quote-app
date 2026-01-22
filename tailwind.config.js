@@ -47,6 +47,8 @@ export default {
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
   			'brand': '#52a8eccc',
+				'error-border': '#c87872',
+				'error-text': '#f2545b',
   			chart: {
   				'1': 'hsl(var(--chart-1))',
   				'2': 'hsl(var(--chart-2))',
