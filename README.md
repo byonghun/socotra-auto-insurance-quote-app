@@ -1,3 +1,140 @@
+# 🎯 Complete Multi-Step Auto Insurance Quote Application
+
+## Overview
+This PR implements a fully functional multi-step auto insurance quote application with form validation, state management, route protection, and a polished UI using shadcn/ui components and Tailwind CSS.
+
+---
+
+## 🚀 Key Features Implemented
+
+### **Multi-Step Form Flow**
+- ✅ Personal Information step (name, email, phone, DOB)
+- ✅ Address Information step (address, city, state, ZIP)
+- ✅ Vehicle Information step (year, make, model, VIN)
+- ✅ Coverage Options step (coverage type, liability limits, deductible)
+- ✅ Review step with collapsible accordion sections
+- ✅ Success page with quote details display
+
+### **State Management & Data Persistence**
+- Implemented TanStack Query hooks for server state management
+- Created reusable hooks: `useQuoteQuery`, `usePatchQuoteMutation`, `useSubmitQuoteMutation`, `useDeleteQuoteMutation`
+- Automatic form data persistence via PATCH requests
+- Quote data cached and shared across all steps
+- LocalStorage integration for submitted quote tracking
+
+### **Form Validation & Error Handling**
+- Zod v4 schema validation for all form fields
+- Server-side validation with detailed error messages
+- Client-side validation with react-hook-form
+- Custom error styling with visual feedback
+- Toast notifications for errors and success using Sonner
+
+### **Route Protection & Navigation**
+- Protected routes that prevent direct URL access to incomplete steps
+- `ProtectedStep` component checks previous step completion
+- Smart navigation that directs users to next incomplete step
+- Visual step indicators in sidebar with completion status
+- Home page progress tracker showing completed steps with checkmarks
+
+### **UI/UX Enhancements**
+- **shadcn/ui Components**: Button, Input, Label, Select, Dialog, Accordion, FormField
+- **Custom Styling**:
+  - Focus border: `#52a8eccc`
+  - Error border: `#c87872`
+  - Error text: `#f2545b`
+- Responsive layout with scrollable content areas
+- Fixed headers/footers on review page
+- Confirmation dialog before quote submission
+- Clean, consistent spacing and typography
+
+### **Smart Features**
+- **Home Page Intelligence**:
+  - Shows "Start Quote" when no quote exists
+  - Shows "Continue Quote" when in progress
+  - Shows "Review & Submit" when all steps complete
+  - Shows "View Submitted Quote" when already submitted
+  - Displays step completion status with visual indicators
+- **Quote Management**:
+  - "Start New Quote" button clears existing data
+  - Reset functionality available on review and success pages
+  - Submission result persistence for viewing later
+
+### **Shared Constants**
+- Created `/shared/constants.ts` for constants used by both frontend and backend:
+  - `US_STATES`: List of US state abbreviations
+  - `LIABILITY_LIMITS`: Coverage limit options
+  - `COLLISION_DEDUCTIBLES`: Deductible options (in cents)
+  - `COVERAGE_TYPES`: Coverage type options
+- Ensures type safety and consistency across client/server
+
+---
+
+## 🏗️ Technical Architecture
+
+### Frontend Stack:
+- React 19 with TypeScript
+- Vite for build tooling
+- React Router DOM v7 for routing
+- TanStack Query v5 for state management
+- Zod v4 for schema validation
+- React Hook Form v7 for form handling
+- shadcn/ui component library
+- Sonner for toast notifications
+- Tailwind CSS v3 for styling
+
+### Key Files Created/Modified:
+- `src/router.tsx` - Application routing with nested routes
+- `src/hooks/index.ts` - TanStack Query hooks
+- `src/components/forms/*` - All form components
+- `src/components/ui/*` - shadcn/ui components
+- `src/routes/quote/steps/*` - Step route components
+- `src/routes/quote/quote-layout.tsx` - Main layout with sidebar
+- `src/routes/home-page.tsx` - Enhanced home page
+- `src/routes/success-page.tsx` - Success page with quote details
+- `shared/constants.ts` - Shared constants between frontend/backend
+- `src/utils/quote.ts` - Step validation and completion logic
+
+---
+
+## 🎨 User Experience Flow
+
+1. **Landing**: Home page shows progress and appropriate action button
+2. **Form Steps**: User fills out 4 forms with real-time validation
+3. **Auto-Save**: Data saved automatically as user progresses
+4. **Review**: All information displayed in collapsible sections with edit buttons
+5. **Confirmation**: Dialog asks user to verify before submission
+6. **Success**: Shows quote ID, premium amount, and term details
+7. **Return**: Can view submitted quote or start new one
+
+---
+
+## ✅ Quality Features
+
+- Comprehensive error handling with user-friendly messages
+- Loading states throughout the application
+- Disabled states prevent duplicate submissions
+- Form validation prevents invalid data
+- Route guards prevent skipping required steps
+- Clean code organization with proper separation of concerns
+- TypeScript for type safety
+- Consistent UI patterns and styling
+
+---
+
+## 📝 Implementation Notes
+
+- All forms use shadcn/ui components for consistent styling
+- Custom Input component with error prop for conditional styling
+- FormField wrapper component for consistent label/error display
+- Review page allows editing any section by navigating back
+- Quote submission stores result for later viewing
+- Delete mutation clears both server data and local cache
+
+---
+
+**This PR represents a complete, production-ready implementation of the auto insurance quote flow with excellent UX, proper validation, and clean architecture.**
+
+
 # Auto Insurance Quote Application — Take-Home Exercise
 
 ## Goal
