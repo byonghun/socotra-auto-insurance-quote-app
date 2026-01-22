@@ -1,0 +1,394 @@
+{
+  "info": {
+    "name": "Quote API",
+    "description": "Auto Insurance Quote API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Quote",
+      "item": [
+        {
+          "name": "Update Quote (Partial - Personal Info)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phoneNumber\": \"(555) 123-4567\",\n  \"dob\": \"1990-01-15\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Update quote with personal information. Can be called multiple times with partial data."
+          }
+        },
+        {
+          "name": "Update Quote (Partial - Address)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"123 Main St\",\n  \"city\": \"San Francisco\",\n  \"state\": \"CA\",\n  \"zipCode\": \"94102\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Update quote with address information."
+          }
+        },
+        {
+          "name": "Update Quote (Partial - Vehicle)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicleYear\": 2020,\n  \"vehicleMake\": \"Toyota\",\n  \"vehicleModel\": \"Camry\",\n  \"vehicleVin\": \"1HGBH41JXMN109186\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Update quote with vehicle information."
+          }
+        },
+        {
+          "name": "Update Quote (Partial - Coverage)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"coverageType\": \"full_coverage\",\n  \"liabilityLimits\": \"250/500\",\n  \"collisionDeductibleInCents\": \"50000\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Update quote with coverage information. liabilityLimits must be one of: 100/300, 250/500, 500/1000, 1000/2000. collisionDeductibleInCents must be one of: 25000 ($250), 50000 ($500), 100000 ($1000), 250000 ($2500)."
+          }
+        },
+        {
+          "name": "Update Quote (Complete)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phoneNumber\": \"(555) 123-4567\",\n  \"dob\": \"1990-01-15\",\n  \"address\": \"123 Main St\",\n  \"city\": \"San Francisco\",\n  \"state\": \"CA\",\n  \"zipCode\": \"94102\",\n  \"vehicleYear\": 2020,\n  \"vehicleMake\": \"Toyota\",\n  \"vehicleModel\": \"Camry\",\n  \"vehicleVin\": \"1HGBH41JXMN109186\",\n  \"coverageType\": \"full_coverage\",\n  \"liabilityLimits\": \"250/500\",\n  \"collisionDeductibleInCents\": \"50000\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Update quote with all fields at once."
+          }
+        },
+        {
+          "name": "Get Quote",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Retrieve the current saved quote. Returns 404 if no quote exists."
+          }
+        },
+        {
+          "name": "Submit Quote",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phoneNumber\": \"(555) 123-4567\",\n  \"dob\": \"1990-01-15\",\n  \"address\": \"123 Main St\",\n  \"city\": \"San Francisco\",\n  \"state\": \"CA\",\n  \"zipCode\": \"94102\",\n  \"vehicleYear\": 2020,\n  \"vehicleMake\": \"Toyota\",\n  \"vehicleModel\": \"Camry\",\n  \"vehicleVin\": \"1HGBH41JXMN109186\",\n  \"coverageType\": \"full_coverage\",\n  \"liabilityLimits\": \"250/500\",\n  \"collisionDeductibleInCents\": \"50000\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Submit final quote. Validates all required fields and returns quoteId with total premium."
+          }
+        },
+        {
+          "name": "Reset Quote",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Delete/reset the stored quote. Useful for testing."
+          }
+        }
+      ],
+      "description": "Quote management endpoints"
+    },
+    {
+      "name": "Validation Examples",
+      "item": [
+        {
+          "name": "Invalid Email",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"invalid-email\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Example of validation error - invalid email format. Should return 422."
+          }
+        },
+        {
+          "name": "Invalid VIN",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicleVin\": \"123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Example of validation error - VIN must be 17 characters. Should return 422."
+          }
+        },
+        {
+          "name": "Invalid State",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"state\": \"XX\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Example of validation error - invalid state code. Should return 422."
+          }
+        },
+        {
+          "name": "Invalid ZIP Code",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"zipCode\": \"123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Example of validation error - ZIP code must be 5 digits. Should return 422."
+          }
+        },
+        {
+          "name": "Invalid Coverage Type",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"coverageType\": \"premium_coverage\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Example of validation error - invalid coverage type. Must be one of: liability_only, standard_coverage, full_coverage. Should return 422."
+          }
+        },
+        {
+          "name": "Invalid Liability Limits",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"liabilityLimits\": \"250/500000\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Example of validation error - invalid liability limits. Must be one of: 100/300, 250/500, 500/1000, 1000/2000. Should return 422."
+          }
+        },
+        {
+          "name": "Invalid Collision Deductible",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collisionDeductibleInCents\": \"30000\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Example of validation error - invalid collision deductible. Must be one of: 25000 ($250), 50000 ($500), 100000 ($1000), 250000 ($2500). Should return 422."
+          }
+        },
+        {
+          "name": "Invalid Age (Under 16)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dob\": \"2010-01-01\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/quote",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["quote"]
+            },
+            "description": "Example of validation error - date of birth must be at least 16 years ago. Should return 422 with age validation error."
+          }
+        }
+      ],
+      "description": "Examples of validation errors and edge cases"
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3001",
+      "type": "string"
+    }
+  ]
+}
