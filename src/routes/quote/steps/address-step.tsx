@@ -1,5 +1,7 @@
-const AddressStep = () => {
-  return <div>Address Step</div>;
-}
+import { AddressForm } from "../../../components/forms/address-form";
 
-export default AddressStep
+const AddressStep = () => {
+  return <AddressForm />;
+};
+
+export default AddressStep;

@@ -1,8 +1,7 @@
+import { PersonalForm } from "../../../components/forms/personal-form";
+
 const PersonalStep = () => {
-  return (
-    <div>Personal Step</div>
-  )
+  return <PersonalForm />;
+};
 
-}
-
-export default PersonalStep
+export default PersonalStep;

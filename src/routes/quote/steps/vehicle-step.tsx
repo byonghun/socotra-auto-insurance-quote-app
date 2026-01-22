@@ -1,5 +1,7 @@
+import { VehicleForm } from "../../../components/forms/vehicle-form";
+
 const VehicleStep = () => {
-  return <div>Vehicle Step</div>;
-}
+  return <VehicleForm />;
+};
 
 export default VehicleStep;
