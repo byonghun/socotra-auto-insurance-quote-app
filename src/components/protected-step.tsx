@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
-import { getQuote } from "../api/quote";
+import { useQuoteQuery } from "../hooks";
 import { getCompletionByStep } from "../utils/quote";
-import type { Quote } from "../types/quote";
 
 type ProtectedStepProps = {
   children: React.ReactNode;
@@ -11,14 +9,7 @@ type ProtectedStepProps = {
 };
 
 const ProtectedStep = ({ children, requiredStep }: ProtectedStepProps) => {
-  const [quote, setQuote] = useState<Quote | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    getQuote()
-      .then(setQuote)
-      .finally(() => setIsLoading(false));
-  }, []);
+  const { data: quote, isLoading } = useQuoteQuery();
 
   if (isLoading) {
     return (
