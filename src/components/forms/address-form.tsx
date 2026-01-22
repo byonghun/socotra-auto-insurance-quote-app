@@ -85,7 +85,7 @@ export function AddressForm() {
           <Input
             {...register("address")}
             error={!!formState.errors.address}
-            placeholder="123 Main Street"
+            placeholder="Enter your address"
           />
         </FormField>
 
@@ -127,7 +127,7 @@ export function AddressForm() {
           <Input
             {...register("zipCode")}
             error={!!formState.errors.zipCode}
-            placeholder="12345"
+            placeholder="Enter your ZIP code"
             maxLength={5}
           />
         </FormField>

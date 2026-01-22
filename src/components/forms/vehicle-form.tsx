@@ -13,10 +13,15 @@ const vehicleSchema = z.object({
   vehicleYear: z
     .string()
     .min(1, "Year is required")
-    .refine((val) => {
-      const num = parseInt(val);
-      return !isNaN(num) && num >= 1900 && num <= new Date().getFullYear() + 1;
-    }, `Year must be between 1900 and ${new Date().getFullYear() + 1}`),
+    .refine(
+      (val) => {
+        const num = parseInt(val);
+        return (
+          !isNaN(num) && num >= 1900 && num <= new Date().getFullYear() + 1
+        );
+      },
+      `Year must be between 1900 and ${new Date().getFullYear() + 1}`,
+    ),
   vehicleMake: z.string().min(1, "Make is required"),
   vehicleModel: z.string().min(1, "Model is required"),
   vehicleVin: z
@@ -86,61 +91,55 @@ export function VehicleForm() {
 
   return (
     <div className="mx-auto max-w-2xl p-6">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Vehicle Information</h2>
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">
+        Vehicle Information
+      </h2>
 
       {quoteQuery.isLoading && <div>Loading…</div>}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          label="Year"
-          error={formState.errors.vehicleYear?.message}
-        >
+        <FormField label="Year" error={formState.errors.vehicleYear?.message}>
           <Input
             type="number"
             {...register("vehicleYear")}
             error={!!formState.errors.vehicleYear}
-            placeholder="2020"
-            min={1900}
+            placeholder="Enter vehicle year"
+            min={new Date().getFullYear() - 99}
             max={new Date().getFullYear() + 1}
           />
         </FormField>
 
-        <FormField
-          label="Make"
-          error={formState.errors.vehicleMake?.message}
-        >
+        <FormField label="Make" error={formState.errors.vehicleMake?.message}>
           <Input
             {...register("vehicleMake")}
             error={!!formState.errors.vehicleMake}
-            placeholder="Toyota"
+            placeholder="Enter vehicle make"
           />
         </FormField>
 
-        <FormField
-          label="Model"
-          error={formState.errors.vehicleModel?.message}
-        >
+        <FormField label="Model" error={formState.errors.vehicleModel?.message}>
           <Input
             {...register("vehicleModel")}
             error={!!formState.errors.vehicleModel}
-            placeholder="Camry"
+            placeholder="Enter vehicle model"
           />
         </FormField>
 
-        <FormField
-          label="VIN"
-          error={formState.errors.vehicleVin?.message}
-        >
+        <FormField label="VIN" error={formState.errors.vehicleVin?.message}>
           <Input
             {...register("vehicleVin")}
             error={!!formState.errors.vehicleVin}
-            placeholder="1HGBH41JXMN109186"
+            placeholder="Enter vehicle VIN"
             maxLength={17}
           />
         </FormField>
 
         <div className="pt-4">
-          <Button type="submit" disabled={patchMutation.isPending} className="w-full">
+          <Button
+            type="submit"
+            disabled={patchMutation.isPending}
+            className="w-full"
+          >
             {patchMutation.isPending ? "Saving…" : "Continue"}
           </Button>
         </div>

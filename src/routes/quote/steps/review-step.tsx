@@ -158,7 +158,7 @@ const ReviewStep = () => {
               </AccordionTrigger>
               <AccordionContent className="space-y-3 pt-4 pb-4">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="col-span-2">
+                  <div>
                     <p className="text-sm text-gray-500">Address</p>
                     <p className="font-medium">{quote.address || "—"}</p>
                   </div>
@@ -209,7 +209,7 @@ const ReviewStep = () => {
                     <p className="text-sm text-gray-500">Model</p>
                     <p className="font-medium">{quote.vehicleModel || "—"}</p>
                   </div>
-                  <div className="col-span-2">
+                  <div>
                     <p className="text-sm text-gray-500">VIN</p>
                     <p className="font-medium">{quote.vehicleVin || "—"}</p>
                   </div>
