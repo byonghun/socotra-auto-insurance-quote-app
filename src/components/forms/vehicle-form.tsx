@@ -104,7 +104,7 @@ export function VehicleForm() {
             {...register("vehicleYear")}
             error={!!formState.errors.vehicleYear}
             placeholder="Enter vehicle year"
-            min={new Date().getFullYear() - 99}
+            min={1900}
             max={new Date().getFullYear() + 1}
           />
         </FormField>
