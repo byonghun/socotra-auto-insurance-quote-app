@@ -9,6 +9,7 @@ import type {
   PricingResponse,
   ValidationErrors,
 } from "./types.js";
+import { US_STATES, COLLISION_DEDUCTIBLES, COVERAGE_TYPES, LIABILITY_LIMITS } from "../shared/constants.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,75 +20,6 @@ const DATA_FILE = path.join(__dirname, "data", "quotes.json");
 
 app.use(cors());
 app.use(express.json());
-
-const US_STATES = [
-  "AL",
-  "AK",
-  "AZ",
-  "AR",
-  "CA",
-  "CO",
-  "CT",
-  "DE",
-  "FL",
-  "GA",
-  "HI",
-  "ID",
-  "IL",
-  "IN",
-  "IA",
-  "KS",
-  "KY",
-  "LA",
-  "ME",
-  "MD",
-  "MA",
-  "MI",
-  "MN",
-  "MS",
-  "MO",
-  "MT",
-  "NE",
-  "NV",
-  "NH",
-  "NJ",
-  "NM",
-  "NY",
-  "NC",
-  "ND",
-  "OH",
-  "OK",
-  "OR",
-  "PA",
-  "RI",
-  "SC",
-  "SD",
-  "TN",
-  "TX",
-  "UT",
-  "VT",
-  "VA",
-  "WA",
-  "WV",
-  "WI",
-  "WY",
-  "DC",
-] as const;
-
-const LIABILITY_LIMITS = [
-  "100/300",
-  "250/500",
-  "500/1000",
-  "1000/2000",
-] as const;
-
-const COLLISION_DEDUCTIBLES = ["25000", "50000", "100000", "250000"] as const;
-
-const COVERAGE_TYPES = [
-  "liability_only",
-  "standard_coverage",
-  "full_coverage",
-] as const;
 
 const quoteSchema = z.object({
   firstName: z.string().min(1),

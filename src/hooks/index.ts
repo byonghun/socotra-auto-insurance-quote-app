@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-import { getQuote, patchQuote, submitQuote } from "../api/quote";
+import { getQuote, patchQuote, submitQuote, deleteQuote } from "../api/quote";
 import type { Quote } from "../types/quote";
 
 const QUOTE_KEY = ["quote"] as const;
@@ -55,6 +55,21 @@ export function useSubmitQuoteMutation() {
       } else {
         toast.error(error.message || "Failed to submit quote");
       }
+    },
+  });
+}
+
+export function useDeleteQuoteMutation() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: () => deleteQuote(),
+    onSuccess: () => {
+      queryClient.setQueryData(QUOTE_KEY, null);
+    },
+    onError: (error: any) => {
+      console.error("Failed to delete quote:", error);
+      toast.error(error.message || "Failed to reset quote");
     },
   });
 }
