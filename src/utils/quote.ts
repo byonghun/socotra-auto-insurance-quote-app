@@ -1,11 +1,11 @@
 import type { StepId, QuoteProp } from "../types/quote";
 
-export const steps: Array<{ id: StepId; label: string; path: string }> = [
-  { id: "personal", label: "Personal Info", path: "/quote/personal" },
-  { id: "address", label: "Address", path: "/quote/address" },
-  { id: "vehicle", label: "Vehicle", path: "/quote/vehicle" },
-  { id: "coverage", label: "Coverage", path: "/quote/coverage" },
-  { id: "review", label: "Review", path: "/quote/review" },
+export const steps: Array<{ id: StepId; label: string; path: string; description: string }> = [
+  { id: "personal", label: "Personal Info", path: "/quote/personal", description: "Your contact and identity information" },
+  { id: "address", label: "Address", path: "/quote/address", description: "Your current residential address" },
+  { id: "vehicle", label: "Vehicle", path: "/quote/vehicle", description: "Details about the car you want to insure" },
+  { id: "coverage", label: "Coverage", path: "/quote/coverage", description: "Select your insurance coverage options" },
+  { id: "review", label: "Review", path: "/quote/review", description: "Review and submit your quote" },
 ];
 
 export function isPersonalComplete(q: QuoteProp): boolean {

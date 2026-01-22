@@ -56,7 +56,7 @@ const QuoteLayout = () => {
               >
                 <div
                   className={cn(
-                    "flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold",
+                    "flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold mt-[3px]",
                     isAccessible
                       ? "bg-green-700 text-white"
                       : "bg-slate-400 text-slate-200",
@@ -65,13 +65,18 @@ const QuoteLayout = () => {
                 >
                   {isAccessible && !isActive ? <Check size={16} /> : index + 1}
                 </div>
-                <span
-                  className={
-                    location.pathname === step.path ? "font-semibold" : ""
-                  }
-                >
-                  {step.label}
-                </span>
+                <div className="flex flex-col">
+                  <span
+                    className={
+                      location.pathname === step.path ? "font-semibold" : ""
+                    }
+                  >
+                    {step.label}
+                  </span>
+                  <span className="text-xs text-slate-600">
+                    {step.description}
+                  </span>
+                </div>
               </NavLink>
             );
           })}
