@@ -134,7 +134,15 @@ export function VehicleForm() {
           />
         </FormField>
 
-        <div className="pt-4">
+        <div className="pt-4 flex gap-3">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => navigate("/quote/address")}
+            className="w-full"
+          >
+            Back
+          </Button>
           <Button
             type="submit"
             disabled={patchMutation.isPending}
