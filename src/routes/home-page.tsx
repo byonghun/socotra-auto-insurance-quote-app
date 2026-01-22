@@ -1,17 +1,32 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuoteQuery, useDeleteQuoteMutation } from "../hooks";
 import { Button } from "../components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "../components/ui/dialog";
 import { steps, getCompletionByStep } from "../utils/quote";
 
 const HomePage = () => {
   const quoteQuery = useQuoteQuery();
   const deleteMutation = useDeleteQuoteMutation();
   const hasQuote = !!quoteQuery.data;
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
-  const handleStartNew = async () => {
+  const handleStartNewClick = () => {
+    setShowDeleteDialog(true);
+  };
+
+  const handleConfirmStartNew = async () => {
     try {
       await deleteMutation.mutateAsync();
       localStorage.removeItem('quoteSubmissionResult');
+      setShowDeleteDialog(false);
       window.location.href = "/quote/personal";
     } catch (err) {
       // Error already handled by mutation
@@ -133,7 +148,7 @@ const HomePage = () => {
             {hasQuote ? (
               <>
                 <Button
-                  onClick={handleStartNew}
+                  onClick={handleStartNewClick}
                   variant="outline"
                   disabled={deleteMutation.isPending}
                 >
@@ -151,6 +166,33 @@ const HomePage = () => {
           </div>
         )}
       </div>
+
+      <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Start New Quote?</DialogTitle>
+            <DialogDescription>
+              This will clear all your current form data and start a new quote from scratch. This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setShowDeleteDialog(false)}
+              disabled={deleteMutation.isPending}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleConfirmStartNew}
+              disabled={deleteMutation.isPending}
+              variant="destructive"
+            >
+              {deleteMutation.isPending ? "Resetting..." : "Clear & Start New"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

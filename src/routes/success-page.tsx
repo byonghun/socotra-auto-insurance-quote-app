@@ -1,13 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { Button } from "../components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "../components/ui/dialog";
 import { useDeleteQuoteMutation } from "../hooks";
 
 const SuccessPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const deleteMutation = useDeleteQuoteMutation();
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   
   // Try to get result from navigation state first, then from localStorage
   let result = location.state?.result;
@@ -33,10 +42,15 @@ const SuccessPage = () => {
     return `$${(cents / 100).toFixed(2)}`;
   };
 
-  const handleStartNewQuote = async () => {
+  const handleStartNewQuoteClick = () => {
+    setShowDeleteDialog(true);
+  };
+
+  const handleConfirmStartNew = async () => {
     try {
       await deleteMutation.mutateAsync();
       localStorage.removeItem('quoteSubmissionResult');
+      setShowDeleteDialog(false);
       navigate("/quote/personal");
     } catch (err) {
       // Error already handled by mutation
@@ -98,7 +112,7 @@ const SuccessPage = () => {
               Return to Home
             </Button>
             <Button
-              onClick={handleStartNewQuote}
+              onClick={handleStartNewQuoteClick}
               variant="outline"
               className="w-full"
               disabled={deleteMutation.isPending}
@@ -108,6 +122,33 @@ const SuccessPage = () => {
           </div>
         </div>
       </div>
+
+      <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Start New Quote?</DialogTitle>
+            <DialogDescription>
+              This will clear all your current form data and start a new quote from scratch. This action cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setShowDeleteDialog(false)}
+              disabled={deleteMutation.isPending}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleConfirmStartNew}
+              disabled={deleteMutation.isPending}
+              variant="destructive"
+            >
+              {deleteMutation.isPending ? "Resetting..." : "Clear & Start New"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
