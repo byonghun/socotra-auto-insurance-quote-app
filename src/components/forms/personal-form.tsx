@@ -20,7 +20,17 @@ const personalSchema = z.object({
       (v) => v.replace(/\D/g, "").length >= 10,
       "Phone number must be valid",
     ),
-  dob: z.string().min(1, "Date of birth is required"), // keep as string in the form (YYYY-MM-DD)
+  dob: z
+    .string()
+    .min(1, "Date of birth is required")
+    .refine((val) => {
+      const date = new Date(val);
+      const minDate = new Date();
+      minDate.setFullYear(minDate.getFullYear() - 100);
+      const maxDate = new Date();
+      maxDate.setFullYear(maxDate.getFullYear() - 16);
+      return date >= minDate && date <= maxDate;
+    }, "Must be between 16 and 100 years old"),
 });
 
 type TPersonalForm = z.output<typeof personalSchema>;

@@ -68,9 +68,7 @@ export function AddressForm() {
     }
   }
 
-  const { register, handleSubmit, formState
-    // , setValue
-  } = form;
+  const { register, handleSubmit, formState } = form;
 
   return (
     <div className="mx-auto max-w-2xl p-6">
@@ -87,7 +85,7 @@ export function AddressForm() {
           <Input
             {...register("address")}
             error={!!formState.errors.address}
-            placeholder="123 Main Street"
+            placeholder="Enter your address"
           />
         </FormField>
 
@@ -110,7 +108,7 @@ export function AddressForm() {
         >
           <select
             {...register("state")}
-            className="flex h-10 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#52a8eccc] focus-visible:border-[#52a8eccc]"
+            className="flex h-10 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:border-brand"
           >
             <option value="">Select state...</option>
             {US_STATES.map((state) => (
@@ -129,7 +127,7 @@ export function AddressForm() {
           <Input
             {...register("zipCode")}
             error={!!formState.errors.zipCode}
-            placeholder="12345"
+            placeholder="Enter your ZIP code"
             maxLength={5}
           />
         </FormField>

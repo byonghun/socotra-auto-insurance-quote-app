@@ -83,7 +83,7 @@ export function CoverageForm() {
         >
           <select
             {...register("coverageType")}
-            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#52a8eccc] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           >
             <option value="">Select coverage type...</option>
             {COVERAGE_TYPES.map((type) => (
@@ -100,7 +100,7 @@ export function CoverageForm() {
         >
           <select
             {...register("liabilityLimits")}
-            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#52a8eccc] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           >
             <option value="">Select liability limits...</option>
             {LIABILITY_LIMITS.map((limit) => (
@@ -117,7 +117,7 @@ export function CoverageForm() {
         >
           <select
             {...register("collisionDeductibleInCents")}
-            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#52a8eccc] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
           >
             <option value="">Select deductible...</option>
             {COLLISION_DEDUCTIBLES.map((deductible) => (

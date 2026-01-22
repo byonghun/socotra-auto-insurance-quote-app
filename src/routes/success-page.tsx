@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { Button } from "../components/ui/button";
@@ -20,6 +21,13 @@ const SuccessPage = () => {
       }
     }
   }
+
+  // Redirect to home if no confirmation ID is found
+  useEffect(() => {
+    if (!result) {
+      navigate("/", { replace: true });
+    }
+  }, [result, navigate]);
 
   const formatCurrency = (cents: number) => {
     return `$${(cents / 100).toFixed(2)}`;
