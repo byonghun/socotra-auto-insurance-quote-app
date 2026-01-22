@@ -31,7 +31,7 @@ const QuoteLayout = () => {
   return (
     <div className="flex h-[100vh] p-6 gap-6">
       <aside className="w-80 h-full bg-slate-200 rounded-lg flex flex-col">
-        <a href="/" className="block p-4 text-xl font-bold">
+        <a href="/" className="block p-4 text-xl font-bold cursor-pointer">
           <img
             src="https://www.socotra.com/wp-content/uploads/2024/10/Socotra-Logo-Black-2048x622.png"
             alt=""
@@ -42,6 +42,7 @@ const QuoteLayout = () => {
           {steps.map((step, index) => {
             const isActive = location.pathname === step.path;
             const isAccessible = isStepAccessible(index);
+            const isCompleted = completion[step.id as keyof typeof completion];
 
             return (
               <NavLink
@@ -57,13 +58,13 @@ const QuoteLayout = () => {
                 <div
                   className={cn(
                     "flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold mt-[3px]",
-                    isAccessible
+                    isCompleted
                       ? "bg-green-700 text-white"
                       : "bg-slate-400 text-slate-200",
                     isActive && "bg-brand text-white",
                   )}
                 >
-                  {isAccessible && !isActive ? <Check size={16} /> : index + 1}
+                  {isCompleted && !isActive ? <Check size={16} /> : index + 1}
                 </div>
                 <div className="flex flex-col">
                   <span
