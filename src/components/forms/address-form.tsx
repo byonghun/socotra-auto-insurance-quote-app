@@ -110,7 +110,7 @@ export function AddressForm() {
         >
           <select
             {...register("state")}
-            className="flex h-10 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#52a8eccc] focus-visible:border-[#52a8eccc]"
+            className="flex h-10 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:border-brand"
           >
             <option value="">Select state...</option>
             {US_STATES.map((state) => (

@@ -18,7 +18,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           "disabled:cursor-not-allowed disabled:opacity-50",
           error 
             ? "border-[#c87872] focus-visible:ring-[#c87872] focus-visible:border-[#c87872]"
-            : "focus-visible:ring-[#52a8eccc] focus-visible:border-[#52a8eccc]",
+            : "focus-visible:ring-brand focus-visible:border-brand",
           className
         )}
         ref={ref}

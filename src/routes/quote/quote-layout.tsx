@@ -60,7 +60,7 @@ const QuoteLayout = () => {
                     isAccessible
                       ? "bg-green-700 text-white"
                       : "bg-slate-400 text-slate-200",
-                    isActive && "bg-[#52a8eccc] text-white",
+                    isActive && "bg-brand text-white",
                   )}
                 >
                   {isAccessible && !isActive ? <Check size={16} /> : index + 1}
